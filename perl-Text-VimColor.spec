@@ -34,7 +34,12 @@ samples. It can produce output in the following formats:
 %{make}
 
 %check
-%{make} test
+# If the terminal is not set, then the tests will fail, so skip them.
+if test -z "$TERM" ; then 
+    true
+else 
+    %{make} test
+fi
 
 %install
 rm -rf %buildroot
